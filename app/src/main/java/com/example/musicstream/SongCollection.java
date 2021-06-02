@@ -27,4 +27,8 @@ public class SongCollection {
         }
         return -1;
     }
+    public Song getCurrentSong(int currentSongId)
+    {
+        return songs[currentSongId];
+    }
 }
