@@ -56,7 +56,7 @@ public class PlaySongActivity extends AppCompatActivity {
         ImageView iCoverArt = findViewById(R.id.imgCoverArt);
         iCoverArt.setImageResource(drawable);
     }
-    public void playSong(String URL)
+    public void playSong(String songUrl)
     {
         try {
             player.reset();
