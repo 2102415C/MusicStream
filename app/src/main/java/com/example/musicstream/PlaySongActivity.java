@@ -51,7 +51,8 @@ public class PlaySongActivity extends AppCompatActivity {
         //Assigning the TextView UI into a variable. So that
         TextView txtTitle = findViewById(R.id.txtSongTitle);
         txtTitle.setText(title);
-        TextView txtArtist = findViewById(R.id.txtArtist1);
+        TextView txtArtist = findViewById(R.id.txtArtist);
+        Log.d("temasek",artist);
         txtArtist.setText(artist);
         ImageView iCoverArt = findViewById(R.id.imgCoverArt);
         iCoverArt.setImageResource(drawable);
