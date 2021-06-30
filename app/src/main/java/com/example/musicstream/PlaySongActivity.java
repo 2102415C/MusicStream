@@ -35,8 +35,8 @@ public class PlaySongActivity extends AppCompatActivity {
         Bundle songData = this.getIntent().getExtras();
         currentIndex = songData.getInt("index");
         Log.d("temasek","Retrieved position is: "+ currentIndex);
-        //displaySongBasedOnIndex(currentIndex);
-        //playSong(fileLink);
+        displaySongBasedOnIndex(currentIndex);
+        playSong(fileLink);
     }
     public void displaySongBasedOnIndex(int selectedIndex)
     {
@@ -94,5 +94,28 @@ public class PlaySongActivity extends AppCompatActivity {
                 btnPlayPause.setText("PLAY");
             }
         });
+    }
+    public void playNext(View view)
+    {
+        currentIndex=songCollection.getNextSong(currentIndex);
+        Toast.makeText(this,"After clicking playNext,\nthe current index of this song\n"+
+                "in the songCollection array is now: "+currentIndex,Toast.LENGTH_LONG).show();
+        Log.d("temasek","After playNext, the index is now:"+currentIndex);
+        displaySongBasedOnIndex(currentIndex);
+        playSong(fileLink);
+    }
+    public void playPrevious(View view)
+    {
+        currentIndex=songCollection.getPreviousSong(currentIndex);
+        Toast.makeText(this,"After clicking playPrevious,\nthe current index of this song\n"+
+                "in the SongCollection array is now: "+currentIndex,Toast.LENGTH_LONG).show();
+        Log.d("temasek","After playPrevious, the index is now:"+currentIndex);
+        displaySongBasedOnIndex(currentIndex);
+        playSong(fileLink);
+    }
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        player.release();
     }
 }

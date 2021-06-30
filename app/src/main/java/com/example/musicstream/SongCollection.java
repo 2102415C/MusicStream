@@ -1,5 +1,7 @@
 package com.example.musicstream;
 
+import android.util.Log;
+
 public class SongCollection {
     //This is to create an Array to store Song variables.
     //This is similar to creating an Array of String Class
@@ -22,7 +24,9 @@ public class SongCollection {
             Song tempSong = songs[index];
             if (tempSong.getId().equals(id))
             {
+                Log.d("TempSong","TempSong Data: "+tempSong.getArtist());
                 return index;
+                //return the index of the song in the array.
             }
         }
         return -1;
@@ -30,5 +34,27 @@ public class SongCollection {
     public Song getCurrentSong(int currentSongId)
     {
         return songs[currentSongId];
+    }
+    public int getNextSong(int currentSongIndex)
+    {
+        if (currentSongIndex>=songs.length-1)
+        {
+            return 0;
+        }
+        else
+        {
+            return currentSongIndex+1;
+        }
+    }
+    public int getPreviousSong(int currentSongIndex)
+    {
+        if (currentSongIndex<=0)
+        {
+            return 2;
+        }
+        else
+        {
+            return currentSongIndex-1;
+        }
     }
 }
