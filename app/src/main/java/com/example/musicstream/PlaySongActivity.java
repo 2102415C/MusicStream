@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,9 @@ public class PlaySongActivity extends AppCompatActivity {
     private String fileLink = "";
     private int drawable;
     private int currentIndex = -1;
+    SeekBar seekbar;
+    Handler handler = new Handler();
+    Runnable runnable;
 
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
@@ -30,6 +35,12 @@ public class PlaySongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
+        //After setting and successfully loading up the activity_play_song.xml,check if there arean existing music/player being started.
+        if (player.isPlaying())
+        {
+            player = null;
+        }
+        seekbar = (SeekBar) findViewById(R.id.songSeekBar);
         btnPlayPause = findViewById(R.id.btnPlayPause);
         //Create a Bundle to retrieve the Intent
         Bundle songData = this.getIntent().getExtras();
@@ -37,6 +48,19 @@ public class PlaySongActivity extends AppCompatActivity {
         Log.d("temasek","Retrieved position is: "+ currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                seekbar.setMax(player.getDuration());
+                updateSeekbar();
+            }
+        });
+        player.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
+            @Override
+            public void onBufferingUpdate(MediaPlayer mp, int percent) {
+                double ratio = percent/100;
+            }
+        });
     }
     public void displaySongBasedOnIndex(int selectedIndex)
     {
@@ -67,6 +91,28 @@ public class PlaySongActivity extends AppCompatActivity {
             gracefullyStopsWhenMusicEnds();
             btnPlayPause.setText("PAUSE");
             setTitle(title);
+            player.seekTo(0);
+            System.out.println("This is the song Duration" + player.getDuration());
+            seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if(fromUser)
+                    {
+                        player.seekTo(progress);
+                        seekBar.setProgress(progress);
+                    }
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
         }catch (IOException e)
         {
             e.printStackTrace();
@@ -93,6 +139,7 @@ public class PlaySongActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"The song had ended and the OnCompleteListener is activated \n"+
                         "The button text is changed to 'PLAY'",Toast.LENGTH_LONG).show();
                 btnPlayPause.setText("PLAY");
+                seekbar.setProgress(0);
             }
         });
     }
@@ -116,7 +163,26 @@ public class PlaySongActivity extends AppCompatActivity {
     }
     public void onBackPressed()
     {
+        if (player != null)
+        {
+            player.release();
+            if (handler != null)
+                handler.removeCallbacksAndMessages(null);
+        }
+        finish();
         super.onBackPressed();
         player.release();
+    }
+    public void updateSeekbar()
+    {
+        int currPos = player.getCurrentPosition();
+        seekbar.setProgress(currPos);
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateSeekbar();
+            }
+        };
+        handler.postDelayed(runnable,1000);
     }
 }
