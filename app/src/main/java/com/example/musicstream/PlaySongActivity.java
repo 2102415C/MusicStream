@@ -35,7 +35,7 @@ public class PlaySongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
-        //After setting and successfully loading up the activity_play_song.xml,check if there arean existing music/player being started.
+        //After setting and successfully loading up the activity_play_song.xml,check if there are an existing music/player being started.
         if (player.isPlaying())
         {
             player = null;
@@ -48,9 +48,9 @@ public class PlaySongActivity extends AppCompatActivity {
         Log.d("temasek","Retrieved position is: "+ currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
-        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onCompletion(MediaPlayer mp) {
+            public void onPrepared(MediaPlayer mp) {
                 seekbar.setMax(player.getDuration());
                 updateSeekbar();
             }
@@ -88,7 +88,6 @@ public class PlaySongActivity extends AppCompatActivity {
             player.setDataSource(songUrl);
             player.prepare();
             player.start();
-            gracefullyStopsWhenMusicEnds();
             btnPlayPause.setText("PAUSE");
             setTitle(title);
             player.seekTo(0);
@@ -117,6 +116,7 @@ public class PlaySongActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
+        gracefullyStopsWhenMusicEnds();
     }
     public void playOrPauseMusic(View view)
     {
@@ -130,6 +130,18 @@ public class PlaySongActivity extends AppCompatActivity {
             player.start();
             btnPlayPause.setText("PAUSE");
         }
+    }
+    public void updateSeekbar()
+    {
+        int currPos = player.getCurrentPosition();
+        seekbar.setProgress(currPos);
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateSeekbar();
+            }
+        };
+        handler.postDelayed(runnable,1000);
     }
     private void gracefullyStopsWhenMusicEnds()
     {
@@ -171,18 +183,5 @@ public class PlaySongActivity extends AppCompatActivity {
         }
         finish();
         super.onBackPressed();
-        player.release();
-    }
-    public void updateSeekbar()
-    {
-        int currPos = player.getCurrentPosition();
-        seekbar.setProgress(currPos);
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                updateSeekbar();
-            }
-        };
-        handler.postDelayed(runnable,1000);
     }
 }
