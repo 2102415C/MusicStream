@@ -54,19 +54,16 @@ public class Login extends AppCompatActivity {
         {
             username.setError("Enter your Username!");
             password.setError("Enter your Password!");
-            Toast.makeText(getBaseContext(),"Please enter your Username and Password to login.",Toast.LENGTH_LONG).show();
         }
         //If Username is empty
         else if ((usernameInput.isEmpty()||usernameInput == null))
         {
             username.setError("Enter your Username!");
-            Toast.makeText(getBaseContext(),"Please enter your Username to login successfully.",Toast.LENGTH_LONG).show();
         }
         //If Password is empty
         else if ((passwordInput.isEmpty()||passwordInput == null))
         {
             password.setError("Enter your Password!");
-            Toast.makeText(getBaseContext(),"Please enter your Password to login successfully.",Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -84,7 +81,6 @@ public class Login extends AppCompatActivity {
                     else
                     {
                         password.setError("Enter a valid Password!");
-                        Toast.makeText(getBaseContext(),"You have entered an incorrect password for"+usernameInput,Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
@@ -92,7 +88,6 @@ public class Login extends AppCompatActivity {
             if (!usernameExist)
             {
                 username.setError("Enter a valid Username!");
-                Toast.makeText(getBaseContext(),"The Username you have entered does not exist.",Toast.LENGTH_LONG).show();
             }
         }
         return loginSuccess;
