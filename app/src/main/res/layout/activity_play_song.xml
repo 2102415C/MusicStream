@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#571686E0"
+    android:background="#B41686E0"
     tools:context=".PlaySongActivity">
 
     <ImageView

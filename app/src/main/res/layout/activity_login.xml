@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".Login">
 
     <TextView
@@ -28,6 +29,8 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:textColor="#1686E0"
+        android:textColorHint="#1686E0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
@@ -40,6 +43,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="#1686E0"
+        android:textColorHint="#1686E0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTxtUsername" />
@@ -50,7 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:onClick="login"
-        android:text="Sign In"
+        android:text="Login"
+        android:textColor="#1686E0"
         app:backgroundTint="#FCFCFC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

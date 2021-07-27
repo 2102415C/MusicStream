@@ -30,5 +30,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("index",index);//optional
         startActivity(intent);
     }
+    public void addToFavourites(View myView)
+    {
+
+    }
 
 }

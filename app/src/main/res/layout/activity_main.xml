@@ -7,6 +7,18 @@
     android:background="#000000"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/add4"
+        android:layout_width="55dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="S1004"
+        android:onClick="addToFavourites"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
     <TextView
         android:id="@+id/txtTitle1"
         android:layout_width="wrap_content"
@@ -61,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Billie Jean"
+        android:text="Thriller"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
         app:layout_constraintStart_toEndOf="@+id/S1002"
@@ -144,7 +156,7 @@
         android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginEnd="32dp"
-        android:contentDescription="S1001"
+        android:contentDescription="S1003"
         android:onClick="addToFavourites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/S1003"
@@ -154,10 +166,43 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
         android:text="Favourites"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/S1003"
+        app:srcCompat="@drawable/wonder_wall" />
+
+    <TextView
+        android:id="@+id/txtTitle4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Wonderwall"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+
+    <TextView
+        android:id="@+id/txtArtist4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Oasis"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
