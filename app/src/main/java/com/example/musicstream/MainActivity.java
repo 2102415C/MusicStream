@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     SongCollection songCollection = new SongCollection();
     //I am creating a variable/copy of the SongCollection class.
     //So that I am able to call the methods and variables from the SongCollection class, by accessing
+    ArrayList<Song> faveList = new ArrayList<Song>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +34,19 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("index",index);//optional
         startActivity(intent);
     }
-    public void addToFavourites(View myView)
+    public void addToFavourites(View view)
     {
-
+        //Getting contentDescription found in activity_main.xml, e.g S1001, and turning it into String songID
+        String songID = view.getContentDescription().toString();
+        Song song = songCollection.searchSongById(songID);
+        faveList.add(song);
+        //Toast.makeText(this,"button is clicked",Toast.LENGTH_SHORT).show();
     }
 
+    public void goToFavouritesActivity(View view)
+    {
+        for (int i = 0; i < faveList.size(); i++) {
+            Log.d("temasek", faveList.get(i).getTitle());
+        }
+    }
 }
