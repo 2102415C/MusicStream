@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     {
         //Getting contentDescription found in activity_main.xml, e.g S1001, and turning it into String songID
         String songID = view.getContentDescription().toString();
-        Song song = songCollection.searchSongById(songID);
+        Song song = songCollection.getCurrentSong(songCollection.searchSongById(songID));
         faveList.add(song);
-        //Toast.makeText(this,"button is clicked",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Added to Favourites",Toast.LENGTH_SHORT).show();
     }
 
     public void goToFavouritesActivity(View view)

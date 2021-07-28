@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,7 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> {
         this.songs = songs;
     }
 
-    //SongAdapter will transfer the ArrayList into songs
+    //SongAdapter will transfer information from the ArrayList into the songs object
     List<Song> songs;
     Context context;
     @NonNull
@@ -30,12 +31,18 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> {
 
     @Override
     public void onBindViewHolder(@NonNull MyView holder, int position) {
-        //Let android studios know which attributes to bind to eg. title, Cover Art, artist
-
+        //Let android studios know which attributes to use to eg. title, Cover Art, artist
+        Song song = songs.get(position);
+        TextView artist = holder.artistTxt;
+        artist.setText(song.getArtist());
+        TextView title = holder.titleTxt;
+        title.setText(song.getTitle());
+        int imageId = AppUtill.getImageIdFromDrawable(context,song.getDrawable());
+        holder.image.setImageResource(imageId);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return songs.size();
     }
 }
