@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     SongCollection songCollection = new SongCollection();
     //I am creating a variable/copy of the SongCollection class.
     //So that I am able to call the methods and variables from the SongCollection class, by accessing
-    ArrayList<Song> faveList = new ArrayList<Song>();
+    static ArrayList<Song> faveList = new ArrayList<Song>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToFavouritesActivity(View view)
     {
-        for (int i = 0; i < faveList.size(); i++) {
-            Log.d("temasek", faveList.get(i).getTitle());
-        }
+        //This will bring the user to FavouriteActivity
+        Intent intent = new Intent(this,FavouriteActivity.class);
+        startActivity(intent);
     }
 }
