@@ -31,6 +31,10 @@ public class PlaySongActivity extends AppCompatActivity {
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
     private SongCollection songCollection = new SongCollection();
+
+    Button btnRepeat;
+    Boolean repeatFlag = false;
+    Boolean shuffleFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +116,8 @@ public class PlaySongActivity extends AppCompatActivity {
 
                 }
             });
+            btnRepeat = findViewById(R.id.btnRepeat);
+
         }catch (IOException e)
         {
             e.printStackTrace();
@@ -183,5 +189,17 @@ public class PlaySongActivity extends AppCompatActivity {
         }
         finish();
         super.onBackPressed();
+    }
+
+    public void repeatSong(View view) {
+        if (repeatFlag)
+        {
+
+        }
+        else
+        {
+            btnRepeat.setBackgroundResource(R.drawable.repeat_on);
+        }
+        repeatFlag = !repeatFlag;
     }
 }

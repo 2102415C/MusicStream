@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B41686E0"
+    android:background="#FFFFFF"
+    android:onClick="repeatSong"
     tools:context=".PlaySongActivity">
 
     <ImageView
         android:id="@+id/imgCoverArt"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="311dp"
+        android:layout_height="287dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
@@ -51,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="16dp"
+        android:background="@android:drawable/ic_media_previous"
         android:onClick="playPrevious"
-        app:icon="@android:drawable/ic_media_previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -72,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="24dp"
+        android:background="@android:drawable/ic_media_next"
         android:onClick="playNext"
-        app:icon="@android:drawable/ic_media_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
         app:layout_constraintTop_toTopOf="@+id/btnPlayPause" />
@@ -86,16 +87,36 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnPlayPause"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtArtist" />
+        app:layout_constraintTop_toBottomOf="@+id/txtArtist"
+        app:layout_constraintVertical_bias="0.287" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
         android:onClick="addToFavourites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSongTitle"
         app:srcCompat="@drawable/like" />
+
+    <Button
+        android:id="@+id/btnShuffle"
+        android:layout_width="62dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shuffle_off"
+        app:layout_constraintBottom_toTopOf="@+id/btnPrevious"
+        app:layout_constraintStart_toStartOf="@+id/btnPrevious" />
+
+    <Button
+        android:id="@+id/btnRepeat"
+        android:layout_width="62dp"
+        android:layout_height="49dp"
+        android:background="@drawable/repeat_off"
+        app:layout_constraintEnd_toEndOf="@+id/btnNext"
+        app:layout_constraintTop_toTopOf="@+id/btnShuffle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
