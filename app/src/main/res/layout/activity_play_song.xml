@@ -120,4 +120,5 @@
         android:background="@drawable/repeat_off"
         app:layout_constraintEnd_toEndOf="@+id/btnNext"
         app:layout_constraintTop_toTopOf="@+id/btnShuffle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

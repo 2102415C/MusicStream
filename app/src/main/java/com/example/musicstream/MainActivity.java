@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         String songID = view.getContentDescription().toString();
         Song song = songCollection.getCurrentSong(songCollection.searchSongById(songID));
         faveList.add(song);
-        //Toast.makeText(this,"Added to Favourites",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Added to Favourites",Toast.LENGTH_SHORT).show();
     }
 
     public void goToFavouritesActivity(View view)
