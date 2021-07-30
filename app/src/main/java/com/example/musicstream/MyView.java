@@ -12,12 +12,12 @@ public class MyView extends RecyclerView.ViewHolder {
     public TextView titleTxt;
     public TextView artistTxt;
     public ImageView image;
-    public Button deleteBtn;
+    public Button btnDelete;
     public MyView(@NonNull View itemView) {
         super(itemView);
         titleTxt = itemView.findViewById(R.id.titleTxt);
         artistTxt = itemView.findViewById(R.id.artistTxt);
         image = itemView.findViewById(R.id.image);
-        deleteBtn = itemView.findViewById(R.id.deleteBtn);
+        btnDelete = itemView.findViewById(R.id.btnDelete);
     }
 }

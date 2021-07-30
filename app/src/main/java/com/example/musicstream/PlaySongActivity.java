@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class PlaySongActivity extends AppCompatActivity {
 
@@ -31,8 +35,12 @@ public class PlaySongActivity extends AppCompatActivity {
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
     private SongCollection songCollection = new SongCollection();
+    private SongCollection originalSongCollection = new SongCollection();
+    //A list can swap the items in the list around
+    List<Song> shuffleList = Arrays.asList(songCollection.songs);
 
     Button btnRepeat;
+    Button btnShuffle;
     Boolean repeatFlag = false;
     Boolean shuffleFlag = false;
     @Override
@@ -117,6 +125,7 @@ public class PlaySongActivity extends AppCompatActivity {
                 }
             });
             btnRepeat = findViewById(R.id.btnRepeat);
+            btnShuffle = findViewById(R.id.btnShuffle);
 
         }catch (IOException e)
         {
@@ -154,10 +163,17 @@ public class PlaySongActivity extends AppCompatActivity {
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(getBaseContext(),"The song had ended and the OnCompleteListener is activated \n"+
-                        "The button text is changed to 'PLAY'",Toast.LENGTH_LONG).show();
-                btnPlayPause.setText("PLAY");
-                seekbar.setProgress(0);
+                if (repeatFlag)
+                {
+                    playOrPauseMusic(null);
+                }
+                else
+                {
+                    Toast.makeText(getBaseContext(), "The song had ended and the OnCompleteListener is activated \n" +
+                            "The button text is changed to 'PLAY'", Toast.LENGTH_LONG).show();
+                    btnPlayPause.setText("PLAY");
+                    seekbar.setProgress(0);
+                }
             }
         });
     }
@@ -194,12 +210,35 @@ public class PlaySongActivity extends AppCompatActivity {
     public void repeatSong(View view) {
         if (repeatFlag)
         {
-
+            //changes the repeat button image from on to off
+            btnRepeat.setBackgroundResource(R.drawable.repeat_off);
         }
         else
         {
+            //changes the repeat button image from off to on
             btnRepeat.setBackgroundResource(R.drawable.repeat_on);
         }
+        //changes the value of repeatFlag from false to true or true to false depending on the value at first
         repeatFlag = !repeatFlag;
+    }
+    public void shuffleSong(View view) {
+        if (shuffleFlag)
+        {
+            //changes the shuffle button image from on to off
+            btnShuffle.setBackgroundResource(R.drawable.shuffle_off);
+            //resets the order of the songs
+            songCollection = new SongCollection();
+        }
+        else
+        {
+            //changes the shuffle button image from off to on
+            btnShuffle.setBackgroundResource(R.drawable.shuffle_on);
+            //shuffles the contents in the list
+            Collections.shuffle(shuffleList);
+            //overrides the original sequence and uses the new sequence
+            shuffleList.toArray(songCollection.songs);
+        }
+        //changes the value of shuffleFlag from false to true or true to false depending on the value at first
+        shuffleFlag = !shuffleFlag;
     }
 }
