@@ -3,10 +3,13 @@ package com.example.musicstream;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -14,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     SongCollection songCollection = new SongCollection();
     //I am creating a variable/copy of the SongCollection class.
-    //So that I am able to call the methods and variables from the SongCollection class, by accessing
+    //So that I am able to call the methods and variables from the SongCollection class
+    SharedPreferences sharedPreferences;
     static ArrayList<Song> faveList = new ArrayList<Song>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = getSharedPreferences("playList",MODE_PRIVATE);
     }
     public void handleSelection(View myView)
     {
@@ -41,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         int index = songCollection.searchSongById(songID);
         Song song = songCollection.getCurrentSong(index);
         faveList.add(song);
+        Gson gson = new Gson();
+        String json = gson.toJson(faveList);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("list",json);
+        Log.d("gson","json");
         Toast.makeText(this,"Added to Favourites",Toast.LENGTH_SHORT).show();
     }
 
