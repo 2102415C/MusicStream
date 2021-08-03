@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyView holder, int position) {
+    public void onBindViewHolder(@NonNull MyView holder,final int position) {
         //Let android studios know which attributes to use to eg. title, Cover Art, artist
         Song song = songs.get(position);
         TextView artist = holder.artistTxt;
@@ -39,6 +40,13 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> {
         title.setText(song.getTitle());
         int imageId = song.getDrawable();
         holder.image.setImageResource(imageId);
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.faveList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
     @Override
     public int getItemCount() {
