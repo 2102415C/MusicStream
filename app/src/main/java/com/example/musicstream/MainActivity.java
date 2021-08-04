@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferences = getSharedPreferences("playList",MODE_PRIVATE);
+        //check for values inside list, if there is, convert back to array list
+        String albums = sharedPreferences.getString("list","");
+        if (!albums.equals(""))
+        {
+            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
+            Gson gson = new Gson();
+            faveList = gson.fromJson(albums,token.getType());
+        }
     }
     public void handleSelection(View myView)
     {
@@ -47,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
         Song song = songCollection.getCurrentSong(index);
         faveList.add(song);
         Gson gson = new Gson();
+        //convert values to store inside list, from ArrayList
         String json = gson.toJson(faveList);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("list",json);
+        editor.apply();
         Log.d("gson","json");
         Toast.makeText(this,"Added to Favourites",Toast.LENGTH_SHORT).show();
     }
