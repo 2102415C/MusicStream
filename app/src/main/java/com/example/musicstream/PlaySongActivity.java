@@ -2,6 +2,7 @@ package com.example.musicstream;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -31,7 +32,11 @@ public class PlaySongActivity extends AppCompatActivity {
     SeekBar seekbar;
     Handler handler = new Handler();
     Runnable runnable;
-
+    Button btnRepeat;
+    Button btnShuffle;
+    Boolean repeatFlag = false;
+    Boolean shuffleFlag = false;
+    Button btnBack;
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
     private SongCollection songCollection = new SongCollection();
@@ -39,10 +44,6 @@ public class PlaySongActivity extends AppCompatActivity {
     //A list can swap the items in the list around
     List<Song> shuffleList = Arrays.asList(songCollection.songs);
 
-    Button btnRepeat;
-    Button btnShuffle;
-    Boolean repeatFlag = false;
-    Boolean shuffleFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,5 +241,13 @@ public class PlaySongActivity extends AppCompatActivity {
         }
         //changes the value of shuffleFlag from false to true or true to false depending on the value at first
         shuffleFlag = !shuffleFlag;
+    }
+    public void goBack(View view){
+        if (player.isPlaying())
+        {
+            player.pause();
+        }
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

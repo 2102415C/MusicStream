@@ -13,7 +13,7 @@
         android:layout_width="311dp"
         android:layout_height="287dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,36 +48,37 @@
 
     <Button
         android:id="@+id/btnPrevious"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="62dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
         android:background="@android:drawable/ic_media_previous"
         android:onClick="playPrevious"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:backgroundTint="#000000"
+        app:layout_constraintStart_toEndOf="@+id/btnShuffle"
+        app:layout_constraintTop_toTopOf="@+id/btnShuffle" />
 
     <Button
         android:id="@+id/btnPlayPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="12dp"
         android:onClick="playOrPauseMusic"
         android:text="Play"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnPrevious"
-        app:layout_constraintTop_toTopOf="@+id/btnPrevious" />
+        app:layout_constraintTop_toTopOf="@+id/btnNext" />
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="62dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:drawable/ic_media_next"
         android:onClick="playNext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
-        app:layout_constraintTop_toTopOf="@+id/btnPlayPause" />
+        app:backgroundTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/btnRepeat"
+        app:layout_constraintTop_toTopOf="@+id/btnRepeat" />
 
     <SeekBar
         android:id="@+id/songSeekBar"
@@ -90,24 +91,40 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtArtist"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <Button
         android:id="@+id/btnShuffle"
         android:layout_width="62dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/shuffle_off"
         android:onClick="shuffleSong"
-        app:layout_constraintBottom_toTopOf="@+id/btnPrevious"
-        app:layout_constraintStart_toStartOf="@+id/btnPrevious" />
+        app:backgroundTint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songSeekBar" />
 
     <Button
         android:id="@+id/btnRepeat"
         android:layout_width="62dp"
         android:layout_height="49dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/repeat_off"
-        app:layout_constraintEnd_toEndOf="@+id/btnNext"
-        app:layout_constraintTop_toTopOf="@+id/btnShuffle" />
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="46dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/back"
+        android:onClick="goBack"
+        app:backgroundTint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
