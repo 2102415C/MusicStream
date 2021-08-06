@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 public class FavouriteActivity extends AppCompatActivity {
 RecyclerView faveList;
 SongAdapter songAdapter;
+Button btnBack2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,5 +27,9 @@ SongAdapter songAdapter;
     public void deleteAll(View view) {
         MainActivity.faveList.clear();
         songAdapter.notifyDataSetChanged();
+    }
+    public void goBack(View view){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }
