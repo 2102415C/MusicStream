@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
 public class FavouriteActivity extends AppCompatActivity {
 RecyclerView faveList;
@@ -22,6 +23,20 @@ Button btnBack2;
         songAdapter = new SongAdapter(MainActivity.faveList);
         faveList.setAdapter(songAdapter);
         faveList.setLayoutManager(new LinearLayoutManager(this));
+        SearchView searchView = findViewById(R.id.searchView);
+        //setOnQueryTextListener will detect whenever there is text in searchView
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                songAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     public void deleteAll(View view) {
