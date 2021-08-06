@@ -55,7 +55,7 @@
         android:onClick="playPrevious"
         app:backgroundTint="#000000"
         app:layout_constraintStart_toEndOf="@+id/btnShuffle"
-        app:layout_constraintTop_toTopOf="@+id/btnShuffle" />
+        app:layout_constraintTop_toTopOf="@+id/btnPlayPause" />
 
     <Button
         android:id="@+id/btnPlayPause"
@@ -102,6 +102,7 @@
         android:background="@drawable/shuffle_off"
         android:onClick="shuffleSong"
         app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPrevious"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songSeekBar" />
 
@@ -126,5 +127,16 @@
         app:backgroundTint="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnChordsAndLyrics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="goToChordsAndLyrics"
+        android:text="Chords and Lyrics"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

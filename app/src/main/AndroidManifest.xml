@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicStream">
+        <activity android:name=".ChordsAndLyricsActivity"></activity>
         <activity android:name=".FavouriteActivity" />
         <activity android:name=".Login">
             <intent-filter>

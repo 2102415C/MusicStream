@@ -37,6 +37,7 @@ public class PlaySongActivity extends AppCompatActivity {
     Boolean repeatFlag = false;
     Boolean shuffleFlag = false;
     Button btnBack;
+    Button btnChordsAndLyrics;
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
     private SongCollection songCollection = new SongCollection();
@@ -248,6 +249,11 @@ public class PlaySongActivity extends AppCompatActivity {
             player.pause();
         }
         Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+    public void goToChordsAndLyrics(View view){
+        btnChordsAndLyrics.getId();
+        Intent intent = new Intent(this,ChordsAndLyricsActivity.class);
         startActivity(intent);
     }
 }
