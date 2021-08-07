@@ -3,6 +3,8 @@ package com.example.musicstream;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Display;
+import android.view.View;
 import android.widget.TextView;
 
 public class ChordsAndLyricsActivity extends AppCompatActivity {
@@ -17,6 +19,8 @@ public class ChordsAndLyricsActivity extends AppCompatActivity {
     {
         Song song = songCollection.getCurrentSong(selectedIndex);
         chordsAndLyrics = song.getChordsAndLyrics();
+    }
+    public void displayChordsAndLyrics(View view) {
         TextView txtChordsAndLyrics = findViewById(R.id.txtChordsAndLyrics);
         txtChordsAndLyrics.setText(chordsAndLyrics);
     }
