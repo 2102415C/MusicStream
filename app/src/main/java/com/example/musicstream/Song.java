@@ -7,14 +7,16 @@ public class Song {
     private String fileLink;
     private double songLength;
     private int drawable;
+    private String chordsAndLyrics;
 
-    public Song(String id, String title, String artist, String fileLink, double songLength, int drawable) {
+    public Song(String id, String title, String artist, String fileLink, double songLength, int drawable,String chordsAndLyrics) {
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.fileLink = fileLink;
         this.songLength = songLength;
         this.drawable = drawable;
+        this.chordsAndLyrics = chordsAndLyrics;
     }
 
 //This is to return the ID value
@@ -65,4 +67,8 @@ public class Song {
     public void setDrawable(int drawable) {
         this.drawable = drawable;
     }
+
+    public String getChordsAndLyrics() {return chordsAndLyrics;}
+
+    public void setChordsAndLyrics(String chordsAndLyrics) {this.chordsAndLyrics = chordsAndLyrics;}
 }
