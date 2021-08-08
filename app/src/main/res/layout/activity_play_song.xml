@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:onClick="repeatSong"
     tools:context=".PlaySongActivity">
 
     <ImageView
@@ -111,6 +110,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="92dp"
         android:background="@drawable/repeat_off"
+        android:onClick="repeatSong"
         app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -29,9 +29,10 @@
 
     <TextView
         android:id="@+id/txtChordsAndLyrics"
-        android:layout_width="415dp"
-        android:layout_height="334dp"
+        android:layout_width="403dp"
+        android:layout_height="331dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
