@@ -252,8 +252,6 @@ public class PlaySongActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goToChordsAndLyrics(View view){
-        btnChordsAndLyrics.getId();
-        displaySongBasedOnIndex(currentIndex);
         Intent intent = new Intent(this,ChordsAndLyricsActivity.class);
         startActivity(intent);
     }
